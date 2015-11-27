@@ -22,7 +22,7 @@ class CocktailsController < ApplicationController
 
   def show
     @cocktail = Cocktail.find(params[:id])
-    @ingredients = @cocktail.ingredients
+    @doses = @cocktail.doses
   end
 
   def edit
@@ -39,6 +39,15 @@ class CocktailsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @cocktail.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+    @cocktail = Cocktail.find(params[:id])
+    @cocktail.destroy
+    respond_to do |format|
+      format.html { redirect_to cocktails_url, notice: 'Cocktail was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 

@@ -2,7 +2,7 @@
 <%= form_for [@cocktail, @dose] do |f| %>
   <%= f.label :ingredient_id %>
   <%= f.select :ingredient_id do %>
-    <%= options_for_select(@ingredients.map { |ingredient| [ingredient.name, ingredient.id] }) %>
+    <%= options_for_select(@ingredients.map { |ingredient| [ingredient.name, ingredient.id] }, selected: @dose.ingredient.id) %>
   <% end %>
   <%= f.label :description %>
   <%= f.text_area :description %>
